@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nobutaka | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- Three.js Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-logo">N.</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">Hello, I'm</p>
+      <h1 class="hero-name">Nobutaka</h1>
+      <p class="hero-title">Web Developer</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title" data-animate>About Me</h2>
+      <div class="about-content" data-animate>
+        <div class="about-text">
+          <p>
+            Web開発に情熱を持つデベロッパーです。
+            ユーザー体験を重視した、美しく機能的なWebサイトを制作しています。
+          </p>
+          <p>
+            新しい技術を学び、クリエイティブなソリューションを生み出すことが好きです。
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-item" data-animate>
+            <span class="stat-number" data-count="1">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Year Experience</span>
+          </div>
+          <div class="stat-item" data-animate>
+            <span class="stat-number" data-count="10">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title" data-animate>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card" data-animate>
+          <div class="skill-icon">&#60;/&#62;</div>
+          <h3>HTML / CSS</h3>
+          <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+        </div>
+        <div class="skill-card" data-animate>
+          <div class="skill-icon">JS</div>
+          <h3>JavaScript</h3>
+          <div class="skill-bar"><div class="skill-fill" data-level="75"></div></div>
+        </div>
+        <div class="skill-card" data-animate>
+          <div class="skill-icon">&#9881;</div>
+          <h3>Git / GitHub</h3>
+          <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
+        </div>
+        <div class="skill-card" data-animate>
+          <div class="skill-icon">&#9632;</div>
+          <h3>Three.js</h3>
+          <div class="skill-bar"><div class="skill-fill" data-level="50"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title" data-animate>Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card" data-animate>
+          <div class="project-image">
+            <div class="project-placeholder">Project 1</div>
+          </div>
+          <div class="project-info">
+            <h3>Project Name</h3>
+            <p>プロジェクトの説明文がここに入ります。使用技術や概要を記載。</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo &rarr;</a>
+              <a href="#" class="project-link">GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card" data-animate>
+          <div class="project-image">
+            <div class="project-placeholder">Project 2</div>
+          </div>
+          <div class="project-info">
+            <h3>Project Name</h3>
+            <p>プロジェクトの説明文がここに入ります。使用技術や概要を記載。</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo &rarr;</a>
+              <a href="#" class="project-link">GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card" data-animate>
+          <div class="project-image">
+            <div class="project-placeholder">Project 3</div>
+          </div>
+          <div class="project-info">
+            <h3>Project Name</h3>
+            <p>プロジェクトの説明文がここに入ります。使用技術や概要を記載。</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo &rarr;</a>
+              <a href="#" class="project-link">GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title" data-animate>Contact</h2>
+      <div class="contact-content" data-animate>
+        <p class="contact-text">お仕事のご依頼・ご相談はお気軽にどうぞ。</p>
+        <form class="contact-form" data-animate>
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required />
+          </div>
+          <div class="form-group">
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Nobutaka. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
