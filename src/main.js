@@ -187,17 +187,103 @@ document.querySelectorAll('.stat-number').forEach((num) => {
   })
 })
 
-// Staggered project cards
-gsap.from('.project-card', {
-  scrollTrigger: {
-    trigger: '.projects-grid',
-    start: 'top 80%',
-  },
-  opacity: 0,
-  y: 60,
-  stagger: 0.2,
-  duration: 0.8,
-  ease: 'power2.out',
+// Projects: pinned section with cards flying in from depth
+const projectCards = gsap.utils.toArray('.projects-stage .project-card')
+const counterCurrent = document.querySelector('.counter-current')
+
+if (projectCards.length > 0) {
+  const projectsTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#projects',
+      start: 'top top',
+      end: `+=${projectCards.length * 150}%`,
+      pin: true,
+      scrub: 0.8,
+    },
+  })
+
+  // Title fade in
+  projectsTl.fromTo(
+    '.projects-title',
+    { opacity: 0, y: 30 },
+    { opacity: 1, y: 0, duration: 0.3 }
+  )
+
+  // First card: approach from far away
+  projectsTl.fromTo(
+    projectCards[0],
+    { opacity: 0, z: -1500, scale: 0.2, rotateX: 10 },
+    {
+      opacity: 1, z: 0, scale: 1, rotateX: 0,
+      duration: 1.2, ease: 'power1.out',
+      onStart: () => {
+        projectCards[0].classList.add('active')
+        if (counterCurrent) counterCurrent.textContent = 1
+      },
+    },
+  )
+
+  // Hold first card
+  projectsTl.to(projectCards[0], { duration: 0.8 })
+
+  // For each subsequent card: fade out current + approach next simultaneously
+  for (let i = 0; i < projectCards.length - 1; i++) {
+    const current = projectCards[i]
+    const next = projectCards[i + 1]
+    const label = `transition-${i}`
+
+    projectsTl.addLabel(label)
+
+    // Current card flies away toward viewer
+    projectsTl.to(current, {
+      opacity: 0, z: 300, scale: 1.15,
+      duration: 1, ease: 'power2.in',
+      onComplete: () => current.classList.remove('active'),
+    }, label)
+
+    // Next card approaches from far away (starts near end of fade out)
+    projectsTl.fromTo(next,
+      { opacity: 0, z: -1500, scale: 0.2, rotateX: 10 },
+      {
+        opacity: 1, z: 0, scale: 1, rotateX: 0,
+        duration: 1.2, ease: 'power1.out',
+        onStart: () => {
+          next.classList.add('active')
+          if (counterCurrent) counterCurrent.textContent = i + 2
+        },
+      },
+      `${label}+=0.7`
+    )
+
+    // Hold next card visible
+    projectsTl.to(next, { duration: 0.8 })
+  }
+}
+
+// Nav click: disable ScrollTrigger temporarily to skip reverse animation
+document.querySelectorAll('.nav-links a').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault()
+    const target = document.querySelector(link.getAttribute('href'))
+    if (!target) return
+
+    // Disable all ScrollTriggers, jump instantly, then re-enable
+    ScrollTrigger.getAll().forEach((st) => st.disable(false))
+
+    // Reset project cards to hidden state
+    projectCards.forEach((card) => {
+      gsap.set(card, { opacity: 0, z: -1500, scale: 0.2, rotateX: 10 })
+      card.classList.remove('active')
+    })
+
+    window.scrollTo({ top: target.offsetTop, behavior: 'instant' })
+
+    // Re-enable after a frame so ScrollTrigger recalculates
+    requestAnimationFrame(() => {
+      ScrollTrigger.getAll().forEach((st) => st.enable())
+      ScrollTrigger.refresh()
+    })
+  })
 })
 
 // Contact form - prevent default (no backend)

@@ -372,26 +372,54 @@ section {
 /* ===== Projects ===== */
 #projects {
   background: linear-gradient(180deg, transparent 0%, rgba(18, 18, 26, 0.5) 50%, transparent 100%);
+  min-height: auto;
+  padding: 0;
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+.projects-pin-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1200px;
 }
 
-.project-card {
+.projects-title {
+  position: absolute;
+  top: 5rem;
+  z-index: 10;
+}
+
+.projects-stage {
+  position: relative;
+  width: 420px;
+  max-width: 85vw;
+  aspect-ratio: 3 / 4;
+  max-height: 60vh;
+  transform-style: preserve-3d;
+}
+
+.projects-stage .project-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   border-radius: 16px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   overflow: hidden;
-  transition: transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateZ(-1500px) scale(0.2);
+  will-change: transform, opacity;
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
+.projects-stage .project-card.active {
   border-color: var(--accent);
-  box-shadow: 0 12px 40px rgba(108, 99, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(108, 99, 255, 0.2);
 }
 
 .project-image {
@@ -410,11 +438,6 @@ section {
   font-size: 1.2rem;
   color: var(--text-secondary);
   font-family: var(--font-code);
-  transition: transform 0.4s ease;
-}
-
-.project-card:hover .project-placeholder {
-  transform: scale(1.05);
 }
 
 .project-info {
@@ -463,6 +486,20 @@ section {
 
 .project-link:hover {
   color: var(--accent);
+}
+
+.projects-counter {
+  position: absolute;
+  bottom: 1.5rem;
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  z-index: 10;
+}
+
+.counter-current {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 /* ===== Contact ===== */
